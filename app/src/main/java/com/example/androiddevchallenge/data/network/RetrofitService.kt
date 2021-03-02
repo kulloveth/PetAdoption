@@ -13,20 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.data.model
+package com.example.androiddevchallenge.data.network
 
-import com.squareup.moshi.Json
+import retrofit2.http.GET
 
-data class Cat(
-    val id: Int = 0,
-    val name: String = "",
-    @Json(name = "description")
-    val desc: String = "",
-    val breed: String = "",
-    @Json(name = "url")
-    val imgUrl: String = "",
-    val location: String = "",
-    val color: String = "",
-    val fee: String = "",
-    val owner: Owner = Owner()
-)
+interface RetrofitService {
+    @GET("cats")
+    suspend fun fetchCats(): CatApiResponse
+}

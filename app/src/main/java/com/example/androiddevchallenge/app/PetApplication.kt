@@ -13,20 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.data.model
+package com.example.androiddevchallenge.app
 
-import com.squareup.moshi.Json
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-data class Cat(
-    val id: Int = 0,
-    val name: String = "",
-    @Json(name = "description")
-    val desc: String = "",
-    val breed: String = "",
-    @Json(name = "url")
-    val imgUrl: String = "",
-    val location: String = "",
-    val color: String = "",
-    val fee: String = "",
-    val owner: Owner = Owner()
-)
+@HiltAndroidApp
+class PetApplication : Application()
