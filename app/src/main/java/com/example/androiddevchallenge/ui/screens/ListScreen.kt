@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.data.network
+package com.example.androiddevchallenge.ui.screens
 
-import com.example.androiddevchallenge.data.model.Cat
-import com.squareup.moshi.JsonClass
+import androidx.compose.runtime.Composable
 
-@JsonClass(generateAdapter = true)
-data class CatApiResponse(
-    val cats: List<Cat>
-)
+@Composable
+fun ListScreen() {
+}

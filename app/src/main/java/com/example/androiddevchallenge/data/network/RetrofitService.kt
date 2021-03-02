@@ -15,9 +15,10 @@
  */
 package com.example.androiddevchallenge.data.network
 
+import com.example.androiddevchallenge.data.model.Cat
 import retrofit2.http.GET
 
 interface RetrofitService {
     @GET("cats")
-    suspend fun fetchCats(): CatApiResponse
+    suspend fun fetchCats(): List<Cat>
 }

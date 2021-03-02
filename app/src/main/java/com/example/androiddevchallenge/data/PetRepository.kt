@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.data.network
+package com.example.androiddevchallenge.data
 
-import com.example.androiddevchallenge.data.model.Cat
-import com.squareup.moshi.JsonClass
+import com.example.androiddevchallenge.data.network.RetrofitService
+import javax.inject.Inject
 
-@JsonClass(generateAdapter = true)
-data class CatApiResponse(
-    val cats: List<Cat>
-)
+class PetRepository @Inject constructor(private val service: RetrofitService) {
+
+    suspend fun fetchCats() = service.fetchCats()
+}

@@ -15,6 +15,9 @@
  */
 package com.example.androiddevchallenge.data.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Owner(
     val name: String = "",
     val photo: String = "",

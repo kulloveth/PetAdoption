@@ -16,7 +16,9 @@
 package com.example.androiddevchallenge.data.model
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Cat(
     val id: Int = 0,
     val name: String = "",
