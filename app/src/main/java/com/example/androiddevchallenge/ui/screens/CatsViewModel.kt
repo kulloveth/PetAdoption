@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.screens.home
+package com.example.androiddevchallenge.ui.screens
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,7 +29,7 @@ import javax.inject.Inject
 class CatsViewModel @Inject constructor(private val repository: PetRepository) : ViewModel() {
 
     private val _catsLiveData = MutableLiveData<List<Cat>>()
-    val catsLiveData = _catsLiveData
+    val catsLiveData: LiveData<List<Cat>> = _catsLiveData
 
     init {
         viewModelScope.launch {

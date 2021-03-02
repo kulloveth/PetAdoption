@@ -20,23 +20,29 @@ import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.androiddevchallenge.ui.screens.home.CatsViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.ui.screens.CatsViewModel
+import com.example.androiddevchallenge.ui.screens.Details
+import com.example.androiddevchallenge.ui.screens.ListScreen
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val viewModel: CatsViewModel by viewModels()
+    @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyTheme {
-                MyApp()
+                MyApp(viewModel)
             }
         }
         viewModel.catsLiveData.observe(
@@ -49,10 +55,20 @@ class MainActivity : AppCompatActivity() {
 }
 
 // Start building your app here!
+@ExperimentalFoundationApi
 @Composable
-fun MyApp() {
+fun MyApp(viewModel: CatsViewModel) {
     Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+        val navController = rememberNavController()
+        NavHost(navController, startDestination = "list") { // this: NavGraphBuilder
+            composable("list") {
+                ListScreen(navController, viewModel)
+            }
+            composable("details") {
+                Details(viewModel)
+            }
+        }
+        ListScreen(navController = navController, viewModel = viewModel)
     }
 }
 
@@ -60,7 +76,7 @@ fun MyApp() {
 @Composable
 fun LightPreview() {
     MyTheme {
-        MyApp()
+        // MyApp()
     }
 }
 
@@ -68,6 +84,6 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     MyTheme(darkTheme = true) {
-        MyApp()
+        // MyApp()
     }
 }
