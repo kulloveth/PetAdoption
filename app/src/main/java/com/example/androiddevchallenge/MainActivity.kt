@@ -16,7 +16,6 @@
 package com.example.androiddevchallenge
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +28,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.screens.CatsViewModel
-import com.example.androiddevchallenge.ui.screens.Details
+import com.example.androiddevchallenge.ui.screens.DetailsScreen
 import com.example.androiddevchallenge.ui.screens.ListScreen
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,12 +44,6 @@ class MainActivity : AppCompatActivity() {
                 MyApp(viewModel)
             }
         }
-        viewModel.catsLiveData.observe(
-            this,
-            {
-                Log.d("ats", "onCreate: $it")
-            }
-        )
     }
 }
 
@@ -65,10 +58,9 @@ fun MyApp(viewModel: CatsViewModel) {
                 ListScreen(navController, viewModel)
             }
             composable("details") {
-                Details(viewModel)
+                DetailsScreen(viewModel)
             }
         }
-        ListScreen(navController = navController, viewModel = viewModel)
     }
 }
 
@@ -76,7 +68,6 @@ fun MyApp(viewModel: CatsViewModel) {
 @Composable
 fun LightPreview() {
     MyTheme {
-        // MyApp()
     }
 }
 

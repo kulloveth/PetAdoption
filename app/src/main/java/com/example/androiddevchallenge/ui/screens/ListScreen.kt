@@ -62,7 +62,10 @@ fun ListScreen(navController: NavController, viewModel: CatsViewModel) {
                     .border(2.dp, Color.Black, RectangleShape)
                     .clickable(
                         onClick = {
-                            navController.navigate("details")
+                            viewModel.catById(cat.id)
+                            navController.navigate("details") {
+                                launchSingleTop = true
+                            }
                         }
                     ),
                 horizontalAlignment = Alignment.CenterHorizontally

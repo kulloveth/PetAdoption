@@ -31,9 +31,16 @@ class CatsViewModel @Inject constructor(private val repository: PetRepository) :
     private val _catsLiveData = MutableLiveData<List<Cat>>()
     val catsLiveData: LiveData<List<Cat>> = _catsLiveData
 
+    private val _catLiveData: MutableLiveData<Cat> = MutableLiveData()
+    val catLiveData: LiveData<Cat> = _catLiveData
     init {
         viewModelScope.launch {
             _catsLiveData.postValue(repository.fetchCats())
+        }
+    }
+    fun catById(id: Int) {
+        _catsLiveData.value?.find { it.id == id }?.let {
+            _catLiveData.postValue(it)
         }
     }
 }
