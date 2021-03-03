@@ -16,15 +16,18 @@
 package com.example.androiddevchallenge.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Card
+import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.MaterialTheme
@@ -38,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.transform.CircleCropTransformation
@@ -66,8 +70,12 @@ fun DetailsScreen(viewModel: CatsViewModel) {
 @Composable
 fun CatDetailsScreen(cat: Cat?) {
     cat?.let { cat ->
+        Card(modifier = Modifier
+            .width(60.dp)
+            .padding(bottom = 10.dp), elevation = 6.dp,backgroundColor = MaterialTheme.colors.primary) {
+            Text("#${cat.fee}", style = MaterialTheme.typography.body2, color = Color.White, textAlign = TextAlign.Center)
+        }
 
-        Text(cat.fee, style = MaterialTheme.typography.body2, color = Color.Red)
         CoilImage(
             data = cat.imgUrl,
             requestBuilder = {
@@ -76,19 +84,45 @@ fun CatDetailsScreen(cat: Cat?) {
             contentDescription = "${cat.name}'s image",
             modifier = Modifier.size(300.dp)
         )
-        Column(
+        Row(
             modifier = Modifier
-                .padding(start = 12.dp)
+                .padding(12.dp),
+            horizontalArrangement = Arrangement.Center
         ) {
-            Text(cat.name, fontWeight = FontWeight.Bold, fontSize = 24.sp)
-            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
-                Text(cat.breed, style = MaterialTheme.typography.body2)
-                Text(cat.location, style = MaterialTheme.typography.body2)
+            Card(modifier = Modifier
+                .padding(end = 10.dp ),  elevation = 6.dp, backgroundColor = Color.LightGray) {
+                Column(modifier = Modifier
+                    .padding(10.dp )) {
+                    Text("Name", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Text(cat.name, fontWeight = FontWeight.Thin, fontSize = 18.sp)
+                }
+
             }
+                Card(modifier = Modifier
+                    .padding(end = 10.dp ),elevation = 6.dp, backgroundColor = Color.LightGray) {
+                    Column(modifier = Modifier
+                        .padding(10.dp )) {
+                        Text("Breed", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                        Text(cat.breed, fontWeight = FontWeight.Thin, fontSize = 18.sp)
+                    }
+
+                }
+                Card(modifier = Modifier
+                    .padding(end = 10.dp ), elevation = 6.dp, backgroundColor = Color.LightGray) {
+                    Column(modifier = Modifier
+                        .padding(10.dp )) {
+                        Text("Location", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                        Text(cat.location, fontWeight = FontWeight.Thin, fontSize = 18.sp)
+                    }
+
+                }
         }
 
         Divider(
             color = Color.Black,
         )
+        Button(onClick = {},Modifier.padding(top=10.dp)) {
+            Text(text = "Adopt")
+        }
     }
 }
