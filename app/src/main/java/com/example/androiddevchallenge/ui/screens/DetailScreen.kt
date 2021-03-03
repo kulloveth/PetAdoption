@@ -16,9 +16,9 @@
 package com.example.androiddevchallenge.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,15 +26,13 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
 import androidx.compose.material.Button
+import androidx.compose.material.Card
 import androidx.compose.material.Divider
-import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -70,9 +68,12 @@ fun DetailsScreen(viewModel: CatsViewModel) {
 @Composable
 fun CatDetailsScreen(cat: Cat?) {
     cat?.let { cat ->
-        Card(modifier = Modifier
-            .width(60.dp)
-            .padding(bottom = 10.dp), elevation = 6.dp,backgroundColor = MaterialTheme.colors.primary) {
+        Card(
+            modifier = Modifier
+                .width(60.dp)
+                .padding(bottom = 10.dp),
+            elevation = 6.dp, backgroundColor = MaterialTheme.colors.primary
+        ) {
             Text("#${cat.fee}", style = MaterialTheme.typography.body2, color = Color.White, textAlign = TextAlign.Center)
         }
 
@@ -89,39 +90,51 @@ fun CatDetailsScreen(cat: Cat?) {
                 .padding(12.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Card(modifier = Modifier
-                .padding(end = 10.dp ),  elevation = 6.dp, backgroundColor = Color.LightGray) {
-                Column(modifier = Modifier
-                    .padding(10.dp )) {
+            Card(
+                modifier = Modifier
+                    .padding(end = 10.dp),
+                elevation = 6.dp, backgroundColor = Color.LightGray
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(10.dp)
+                ) {
                     Text("Name", fontWeight = FontWeight.Bold, fontSize = 18.sp)
                     Text(cat.name, fontWeight = FontWeight.Thin, fontSize = 18.sp)
                 }
-
             }
-                Card(modifier = Modifier
-                    .padding(end = 10.dp ),elevation = 6.dp, backgroundColor = Color.LightGray) {
-                    Column(modifier = Modifier
-                        .padding(10.dp )) {
-                        Text("Breed", fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                        Text(cat.breed, fontWeight = FontWeight.Thin, fontSize = 18.sp)
-                    }
-
+            Card(
+                modifier = Modifier
+                    .padding(end = 10.dp),
+                elevation = 6.dp, backgroundColor = Color.LightGray
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(10.dp)
+                ) {
+                    Text("Breed", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Text(cat.breed, fontWeight = FontWeight.Thin, fontSize = 18.sp)
                 }
-                Card(modifier = Modifier
-                    .padding(end = 10.dp ), elevation = 6.dp, backgroundColor = Color.LightGray) {
-                    Column(modifier = Modifier
-                        .padding(10.dp )) {
-                        Text("Location", fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                        Text(cat.location, fontWeight = FontWeight.Thin, fontSize = 18.sp)
-                    }
-
+            }
+            Card(
+                modifier = Modifier
+                    .padding(end = 10.dp),
+                elevation = 6.dp, backgroundColor = Color.LightGray
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(10.dp)
+                ) {
+                    Text("Location", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Text(cat.location, fontWeight = FontWeight.Thin, fontSize = 18.sp)
                 }
+            }
         }
 
         Divider(
             color = Color.Black,
         )
-        Button(onClick = {},Modifier.padding(top=10.dp)) {
+        Button(onClick = {}, Modifier.padding(top = 10.dp)) {
             Text(text = "Adopt")
         }
     }
